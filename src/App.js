@@ -14,7 +14,7 @@ import Home from './Home'
                 <h1>Large Scale</h1>
                 <nav>
                   <ul className="menu">
-                    <li><a href="#" onClick={()=>this.goHome()}>Home</a></li>
+                    <li><a href="" onClick={()=>this.goHome()}>Home</a></li>
                     <li><a href="#" onClick={()=>this.set_page(1)}>Try</a></li>
                     <li><a href="#" onClick={()=>this.set_page(2)}>About</a></li>
                     <li><a href="#" onClick={()=>this.set_page(3)}>Feedback</a></li>
