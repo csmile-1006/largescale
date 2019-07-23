@@ -27,6 +27,7 @@ import Home from './Home'
     page : ['home','scenario','about','feedback','language'],
     stage_id: 0,
     stage : ['intro','discription'],
+    language_list : ['Korean', 'English'],
     language: 0
   }
 
@@ -40,6 +41,10 @@ import Home from './Home'
 
   set_page = (id) => {
     this.setState({page_id : id})
+  }
+
+  choose_language = (language) => {
+    this.setState ({language : language, page_id: 0, stage_id: 0});
   }
   render () {
     let content;
@@ -62,7 +67,7 @@ import Home from './Home'
         break;
 
       case 'language':
-        content = <Language header = {this.state.header} />;
+        content = <Language header = {this.state.header} choose_language = {this.choose_language} />;
         break;
 
       default:

@@ -4,7 +4,7 @@ class Description extends Component {
 
     render () {
         return (
-            <div>
+            <div className = "Description">
             {this.props.header}
             <body> <p>Description Page.</p></body>
             </div>
