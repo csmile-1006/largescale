@@ -4,9 +4,10 @@ import './App.css';
 import Scenario from './Scenario'
 import About from './About'
 import Feedback from './Feedback'
-import Language from './Language'
 import Home from './Home'
- class App extends Component {
+import {DropdownButton, Dropdown} from 'react-bootstrap'
+import {Toolbar_text, Home_text} from './Data'
+class App extends Component {
 
   state = {
     header: <header>
@@ -18,16 +19,21 @@ import Home from './Home'
                     <li><a href="#" onClick={()=>this.set_page(1)}>Try</a></li>
                     <li><a href="#" onClick={()=>this.set_page(2)}>About</a></li>
                     <li><a href="#" onClick={()=>this.set_page(3)}>Feedback</a></li>
-                    <li><a href="#" onClick={()=>this.set_page(4)}>Language</a></li>
+                    <li>
+                    <DropdownButton style = {{"line-height" : "70px"}} id="dropdown-basic-button" title="Language" size = "sm">
+                        <Dropdown.Item as="button" onClick={()=>this.choose_language(0)}>Korean</Dropdown.Item>
+                        <Dropdown.Item as="button" onClick={()=>this.choose_language(1)}>English</Dropdown.Item>
+                    </DropdownButton>
+                    </li>
                   </ul>
                 </nav>
               </div>
             </header>,
     page_id: 0,
-    page : ['home','scenario','about','feedback','language'],
+    page : ['home','scenario','about','feedback'],
     stage_id: 0,
     stage : ['intro','discription'],
-    language_list : ['Korean', 'English'],
+    language_list : ['English', 'Korean'],
     language: 0
   }
 
@@ -46,6 +52,7 @@ import Home from './Home'
   choose_language = (language) => {
     this.setState ({language : language, page_id: 0, stage_id: 0});
   }
+
   render () {
     let content;
     var stage = this.state.page[this.state.page_id];
@@ -55,7 +62,7 @@ import Home from './Home'
                    page_id = {this.state.page_id} set_page = {this.set_page}/>
         break;
       case 'scenario':
-        content = <Scenario header = {this.state.header} />;
+        content = <Scenario header = {this.state.header} goHome = {this.goHome}/>;
         break;
 
       case 'about':
@@ -64,10 +71,6 @@ import Home from './Home'
 
       case 'feedback':
         content = <Feedback header = {this.state.header} />;
-        break;
-
-      case 'language':
-        content = <Language header = {this.state.header} choose_language = {this.choose_language} />;
         break;
 
       default:
