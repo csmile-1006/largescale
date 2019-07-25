@@ -6,7 +6,7 @@ import About from './About'
 import Feedback from './Feedback'
 import Home from './Home'
 import {DropdownButton, Dropdown} from 'react-bootstrap'
-import {Toolbar_text, Home_text} from './Data'
+
 class App extends Component {
 
   state = {
@@ -20,7 +20,7 @@ class App extends Component {
                     <li><a href="#" onClick={()=>this.set_page(2)}>About</a></li>
                     <li><a href="#" onClick={()=>this.set_page(3)}>Feedback</a></li>
                     <li>
-                    <DropdownButton style = {{"line-height" : "70px"}} id="dropdown-basic-button" title="Language" size = "sm">
+                    <DropdownButton variant="secondary" style = {{"line-height" : "70px"}} id="dropdown-basic-button" title="Language" size = "sm">
                         <Dropdown.Item as="button" onClick={()=>this.choose_language(0)}>Korean</Dropdown.Item>
                         <Dropdown.Item as="button" onClick={()=>this.choose_language(1)}>English</Dropdown.Item>
                     </DropdownButton>

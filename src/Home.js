@@ -3,11 +3,6 @@ import Button from 'react-bootstrap/Button';
 
 class Home extends Component {
 
-    // state = {
-    //     stage : ['intro', 'scenario', 'inst'],
-    //     stage_id: 0,
-    // }
-
     set_stage = (param) => {
         this.props.set_stage(param)
     }
@@ -32,7 +27,7 @@ class Home extends Component {
                                     <div className = "ButtonMargin"><Button variant="danger" className="ButtonWidth" onClick = {()=>this.set_page(1)}> Start </Button></div>
                                     <div className = "ButtonMargin"><Button variant="danger" className="ButtonWidth" onClick = {()=>this.set_stage(1)}> View Instructions </Button></div>
                 
-                                    <a href="https://ds.kaist.ac.kr"><img src="https://cdn-img.microrobotresear.ch/KAIST_logo-01.png" alt="KAIST_LOGO" style={{"margin-top" : "30px", "width" : "300px", "height" : "auto"}}></img></a>
+                                    <a href="https://ds.kaist.ac.kr"><img src="https://cdn-img.microrobotresear.ch/KAIST_logo-01.png" alt="KAIST_LOGO" style={{"margin-top" : "100px", "width" : "300px", "height" : "auto"}}></img></a>
                                     </body>
                             </div>
                     break;
@@ -56,7 +51,7 @@ class Home extends Component {
                                     <div className = "ButtonMargin"><Button variant="danger" className="ButtonWidth" onClick = {()=>this.next_page(1)}> Start </Button></div>
                                     <div className = "ButtonMargin"><Button variant="danger" className="ButtonWidth" onClick = {()=>this.next_stage(1)}> View Instructions </Button></div>
                 
-                                    <a href="https://ds.kaist.ac.kr"><img src="https://cdn-img.microrobotresear.ch/KAIST_logo-01.png" alt="KAIST_LOGO" style={{"margin-top" : "30px", "width" : "300px", "height" : "auto"}}></img></a>
+                                    <a href="https://ds.kaist.ac.kr"><img src="https://cdn-img.microrobotresear.ch/KAIST_logo-01.png" alt="KAIST_LOGO" style={{"margin-top" : "100px", "width" : "300px", "height" : "auto"}}></img></a>
                                     </body>
                                 </div>
                                 
