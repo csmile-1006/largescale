@@ -14,7 +14,7 @@ class Scenario extends Component {
         total_question: scenario_list.length,
         index: makeIndex (scenario_list.length),
         question_order: scenario_order(scenario_list.length),
-        path: "",
+        response: {},
     }
 
     next_stage = () => {
@@ -29,10 +29,18 @@ class Scenario extends Component {
         this.setState({main_id: this.state.main_id + 1});
     }
 
+    saveResponse = (id, q, r) => {
+        var tmpResponse = this.state.response;
+        tmpResponse[id] = {question: q, response: r};
+        this.setState({response: tmpResponse})
+        this.next_question()
+    }
+
     render () {
         var stage = this.state.stage[this.state.stage_id];
-        var current_question = this.state.question_order[this.state.main_id - 1];
+        var current_scenario = scenario_list[this.state.question_order[this.state.main_id - 1]];
         var current_index = this.state.index[this.state.main_id - 1];
+        var current_one = current_scenario.content[current_index]
         let content;
         switch(stage) {
             case ("intro"):
@@ -48,11 +56,13 @@ class Scenario extends Component {
             case ("main"):
                 content =
                 <div>
-                    <h3>{scenario_list[current_question].content[current_index].question}</h3>
-                    <Image src = {scenario_list[current_question].content[current_index].image} style = {{"width" : "500px", "height" : "350px", "margin" : "30px"}}/>
+                    <h3>{current_one.question}</h3>
+                    <Image src = {current_one.image} style = {{"width" : "500px", "height" : "350px", "margin" : "30px"}}/>
                     <div>
-                        <Button variant="success" className="ButtonMargin" onClick = {()=>this.next_question()}>{scenario_list[current_question].content[current_index].choice[0]}</Button>
-                        <Button variant="warning" className="ButtonMargin" onClick = {()=>this.next_question()}>{scenario_list[current_question].content[current_index].choice[1]}</Button>
+                        {/* <Button variant="success" className="ButtonMargin" onClick = {()=>this.saveResponse(current_scenario, current_index, 0)}>{current_one.choice[0]}</Button>
+                        <Button variant="warning" className="ButtonMargin" onClick = {()=>this.saveResponse(current_scenario, current_index, 1)}>{current_one.choice[1]}</Button> */}
+                        <Button variant="success" className="ButtonMargin" onClick = {()=>this.saveResponse(current_scenario.id, current_one.question, current_one.choice[0])}>{current_one.choice[0]}</Button>
+                        <Button variant="warning" className="ButtonMargin" onClick = {()=>this.saveResponse(current_scenario.id, current_one.question, current_one.choice[1])}>{current_one.choice[1]}</Button>
                     </div>
                     <div style={{'textAlign' : 'right'}}>
                         {this.state.main_id} / {this.state.total_question}
@@ -61,7 +71,7 @@ class Scenario extends Component {
                 break;
 
             case "statistics":
-                content = <Statistics goHome = {this.props.goHome} />
+                content = <Statistics goHome_default = {this.props.goHome_default} />
                 break;
             default:
                 alert("YOU MUST NOT BE HERE.");
@@ -69,10 +79,10 @@ class Scenario extends Component {
 
         return (
             <div>
-            {this.props.header}
-            <body className="content">
-                 {content}
-            </body>
+                {this.props.header}
+                <body className="content">
+                    {content}
+                </body>
             </div>
         )
     }

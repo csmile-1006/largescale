@@ -9,7 +9,7 @@ class Statistics extends Component {
                 {this.props.header}
                 <body>
                     <p>Statistics page.</p>
-                    <Button onClick={()=>this.props.goHome()}>OK</Button>
+                    <Button onClick={()=>this.props.goHome_default()}>OK</Button>
                 </body>
             </div>
         )
